@@ -17,6 +17,9 @@ def client
   }
 end
 
+# NOTE:
+# - If you want to customize responses, this is the method
+#   you should modify!!!
 def bot_answer_to(a_question, user_name)
   if a_question.match?(/(Hi|Hey|Bonjour|Hi there|Hey there|Hello).*/i)
     "Hello " + user_name + ", how are you doing today?"
@@ -29,7 +32,7 @@ def bot_answer_to(a_question, user_name)
   elsif a_question.end_with?('?')
     "Good question, " + user_name + "!"
   else
-    ["I couldn't agree more.", "Great to hear that.", "Kinda make sense."].sample
+    ["My business is private.", "It's a dangerous LINE of work!"].sample
   end
 end
 
