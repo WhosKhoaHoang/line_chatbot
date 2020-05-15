@@ -10,6 +10,7 @@ require "ibm_watson/visual_recognition_v3"
 
 include IBMWatson
 
+
 def client
   @client ||= Line::Bot::Client.new { |config|
     config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
@@ -17,24 +18,17 @@ def client
   }
 end
 
-# NOTE:
-# - If you want to customize responses, this is the method
-#   you should modify!!!
+
+# TODO:
+# - Figure out why an initial call to the
+#   ArnoldBotAPI takea so long...
+# - Find a better way to test this module
 def bot_answer_to(a_question, user_name)
-  if a_question.match?(/(Hi|Hey|Bonjour|Hi there|Hey there|Hello).*/i)
-    "Hello " + user_name + ", how are you doing today?"
-  elsif a_question.match?(/([\p{Hiragana}\p{Katakana}\p{Han}]+)/)
-    bot_jp_answer_to(a_question, user_name)
-  elsif a_question.match?(/how\s+.*are\s+.*you.*/i)
-    "I am fine, " + user_name
-  elsif a_question.match?(/.*le wagon.*/i)
-    "Wait " + user_name + "... did you mean Le Wagon Kyoto!? These guys are just great!"
-  elsif a_question.end_with?('?')
-    "Good question, " + user_name + "!"
-  else
-    ["My business is private.", "It's a dangerous LINE of work!"].sample
-  end
+  uri = URI("https://arnoldbot-api.herokuapp.com/talk?msg="+a_question)
+  resp = Net::HTTP.get(uri)
+  return JSON.load(resp)["response"]
 end
+
 
 def bot_jp_answer_to(a_question, user_name)
   if a_question.match?(/(おはよう|こんにちは|こんばんは|ヤッホー|ハロー).*/)
@@ -49,6 +43,7 @@ def bot_jp_answer_to(a_question, user_name)
     ["そうですね！", "確かに！", "間違い無いですね！"].sample
   end
 end
+
 
 post "/callback" do
   body = request.body.read
@@ -125,3 +120,8 @@ post "/callback" do
 
   "OK"
 end
+
+
+# puts "\n\n"
+# puts bot_answer_to("hello", "test")
+# puts "\n\n"

@@ -13,7 +13,7 @@ Built on the shoulder of giants, especially https://github.com/hidehiro98/
 
 ## CAUTION!
 DO NOT INCLUDE 'line' in the name of provider and channel.
-If you do so, you cannnot create the provider nor the channel.
+If you do so, you cannot create the provider nor the channel.
 
 ## Setup
 
@@ -49,7 +49,7 @@ Download Git [here](https://git-scm.com/download/win) and install it
 ## Get the code up and running
 Open a terminal (search for "Terminal" (Mac, Ubuntu) or "Command Prompt" (Windows) in your OS search bar).
 
-We will dowload the bot code from Github, then we will push it to Heroku:
+We will download the bot code from Github, then we will push it to Heroku:
 ```
 git clone https://github.com/yannklein/bob-the-bot.git [your-bot-name]
 cd [your-bot-name]
