@@ -54,9 +54,11 @@ We will download the bot code from Github, then we will push it to Heroku:
 git clone https://github.com/yannklein/bob-the-bot.git [your-bot-name]
 cd [your-bot-name]
 heroku create [your-bot-name]
-git push heroku master
+git push heroku master  //NOTE: This is all that's needed to update the LINE Chatbot. No need to re-add it in the app.
 ```
 We will configure the keys to access the LINE API service:
+
+//NOTE: These config variables are applied only to the current app (line_chatbot)
 
 Replace `[YOUR_LINE_CHANNEL_SECRET]` and `[YOUR_LINE_ACCESS_TOKEN]` by your own keys.
 ```
