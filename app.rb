@@ -21,7 +21,9 @@ end
 
 # TODO:
 # - Figure out why an initial call to the
-#   ArnoldBotAPI takea so long...
+#   ArnoldBotAPI takea so long...Ah, this is
+#   a known occurrence. See this SO discussion:
+#   https://stackoverflow.com/questions/2606190/
 # - Find a better way to test this module
 def bot_answer_to(a_question, user_name)
   uri = URI("https://arnoldbot-api.herokuapp.com/talk?msg="+a_question)
